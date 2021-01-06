@@ -1,0 +1,16 @@
+@url = http://127.0.0.1:3001
+
+###
+GET {{url}}/admin
+
+###
+POST {{url}}/admin/register
+content-type: application/json
+
+{
+  "username": "哈哈哈",
+  "email": "77988666@qq.com",
+  "passwrod": "666666",
+  "rold": 0,
+  "status": 0
+}

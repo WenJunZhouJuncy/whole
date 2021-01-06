@@ -1,0 +1,177 @@
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p,
+b, i,
+dl, dt, dd, ol, ul, li,
+form, label,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    font-size: 16px;
+
+}
+
+body {
+    line-height: 1;
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Source Han Sans CN Normal", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: #333;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+:focus {
+	outline: 1;
+}
+
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary {
+    display: block;
+}
+
+ul, li {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+a {
+	color: inherit;
+    margin: 0;
+    padding: 0;
+    border: none;
+    vertical-align: baseline;
+    background: transparent;
+    text-decoration: none;
+}
+
+body a:link, body a:visited, body a:hover {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+button{
+    border:0px;
+    background-color:transparent;
+}
+
+button::after{
+    border:none;
+}
+
+input{
+    outline:none;
+    border:none;
+    list-style: none;
+}
+input::placeholder{
+    color: #a8a8a8;
+}
+img  
+{  
+    width: 100%;
+    height: 100%;
+    outline-width:0px;  
+    vertical-align:middle;  
+    border:0px;
+    
+} 
+
+html, body {
+    box-sizing: border-box;
+    font-size: 28px;
+    background-color: #f6f8fa;
+}
+
+/* @font-face{
+  font-family: myFamily; 
+  src:url('../font/DS-DIGI-1.ttf'),url('../font/DS-DIGIB-2.ttf'),url('../font/DS-DIGII-3.ttf'),url('../font/DS-DIGIT-4.ttf')
+ } */
+
+ .myFamily{
+   font-family: myFamily;
+ }
+
+.m{
+  margin: 0 auto;
+}
+.mgb20{
+  margin-bottom: 20px;
+}
+.mgb30{
+  margin-bottom: 30px;
+}
+.mgb35{
+  margin-bottom: 35px;
+}
+.mgb20{
+  margin-bottom: 20px;
+}
+.mgb16{
+  margin-bottom: 16px;
+}
+.mgt30{
+  margin-top: 30px;
+}
+.mgt35{
+  margin-top: 35px;
+}
+.mgt20{
+  margin-top: 20px;
+}
+.mgt18{
+  margin-top: 18px;
+}
+.pdt20{
+  padding-top: 20px;
+}
+.flex_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* // @media screen and (max-width: 1325px) { //  一列
+//   .left_wrap,.center_wrap,.rigth_wrap{
+//     min-width: 750px !important;
+//   }
+// }
+// @media screen and (min-width: 1325px) and (max-width:1775px)  { // 两列
+
+// }
+// @media screen and (min-width: 1775px) { // >1870px 三列
+
+// } */
