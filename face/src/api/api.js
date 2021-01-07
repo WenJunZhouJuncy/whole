@@ -20,6 +20,14 @@ export const register = (data = {}) => {
 	})
 }
 
+export const login = (data = {}) => {
+	return axios({
+		url: common.baseURL + '/admin/login',
+		method: 'post',
+		data,
+	})
+}
+
 //我的问诊列表/ehealth.portalapi/api/DrugStore/GetSouthVisitList
 // export function getSouthVisitList(parameter) {
 // 	let parameters = {};

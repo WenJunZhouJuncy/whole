@@ -3,25 +3,27 @@
     <div class="from_wrap">
       <el-form hide-required-asterisk :model="form" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="昵称：" prop="username">
-          <el-input v-model="form.username"></el-input>
+          <el-input v-model="form.username" @keyup.native.enter="submitForm('ruleForm')"></el-input>
         </el-form-item>
         <el-form-item label="邮箱：" prop="email">
-          <el-input v-model="form.email"></el-input>
+          <el-input v-model="form.email" @keyup.native.enter="submitForm('ruleForm')"></el-input>
         </el-form-item>
         <el-form-item label="密码：" prop="passwrod">
-          <el-input v-model="form.passwrod" show-password></el-input>
+          <el-input v-model="form.passwrod" show-password @keyup.native.enter="submitForm('ruleForm')"></el-input>
         </el-form-item>
         <el-form-item label="验证码：" prop="code" class="identify_form_item">
-          <el-input v-model="form.code" maxlength="4"></el-input>
+          <el-input v-model="form.code" maxlength="4" @keyup.native.enter="submitForm('ruleForm')"></el-input>
           <Identify ref="Identify" class="identify_wrap"></Identify>
         </el-form-item>
         <el-form-item>
           <el-switch
             class="switch"
             v-model="form.statusValue"
+            :active-text="statusText"
             :active-value="1"
             :inactive-value="0"
             active-color="#13ce66"
+            @change="statusChange"
             inactive-color="#ff4949">
           </el-switch>
           <el-popover
@@ -45,8 +47,9 @@ export default {
   },
   data() {
     return {
+      statusText: '关闭用户',
       form: {
-        statusValue: 0,
+        statusValue: 1,
         username: '',
         email: '',
         passwrod: '',
@@ -76,6 +79,9 @@ export default {
   computed: {},
   watch: {},
   methods: {
+    statusChange(val) {
+      this.statusText = val ? '关闭用户' : '开启用户'
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -84,7 +90,38 @@ export default {
       });
     },
     async goRegister() {
-      const res = await this.$api.register(this.form)
+      let isAccord = this.form.code.toLowerCase() === this.$refs.Identify.identifyCode
+      if (!isAccord) {
+        this.$refs.Identify.changeCode()  //刷新验证码
+        return this.$message({
+          showClose: true,
+          message: '验证码错误',
+          type: 'warning'
+        })
+      }
+      try {
+        const res = await this.$api.register(this.form)
+        if (res.code === 0) {
+          this.$message({
+            type: 'success',
+            message: res.message
+          })
+          this.$router.push({
+            path: '/signIn'
+          })
+        } else {
+          this.$message({
+            type: 'warning',
+            message: res.message
+          })
+        }
+      } catch (err) {
+        console.log(err);
+        this.$message({
+          type: 'warning',
+          message: err.message
+        })
+      }
     }
   },
   created() {
@@ -107,6 +144,12 @@ export default {
     color: rgb(253, 81, 81);
     text-decoration: underline !important;
   }
+}
+.el-switch__label span{
+  color: #ff4949;
+}
+.el-switch__label.is-active span{
+  color: #13ce66;
 }
 </style>
 <style lang='less'>

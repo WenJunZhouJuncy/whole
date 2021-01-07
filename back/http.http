@@ -3,13 +3,25 @@
 ###
 GET {{url}}/admin
 
-###
+### 注册
 POST {{url}}/admin/register
 content-type: application/json
 
 {
   "username": "哈哈哈",
   "email": "77988666@qq.com",
+  "passwrod": "666666",
+  "rold": 0,
+  "status": 0
+}
+
+###登录
+POST {{url}}/admin/login
+content-type: application/json
+
+{
+  "username": "哈哈哈",
+  "email": "6666666@qq.com",
   "passwrod": "666666",
   "rold": 0,
   "status": 0

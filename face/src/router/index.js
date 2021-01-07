@@ -8,13 +8,14 @@ const routes = [
     path: '/',
     name: 'home',
     meta: {
-      title: '首页'
+      title: '首页',
+      auth: true
     },
     component: () => import(/* webpackChunkName: "about" */ '@/views/home/index')
   },
   {
     path: '/signIn',
-    name: '登录',
+    name: 'signIn',
     meta: {
       title: '登录'
     },
@@ -22,7 +23,7 @@ const routes = [
   },
   {
     path: '/signUp',
-    name: '注册',
+    name: 'signUp',
     meta: {
       title: '注册'
     },
@@ -48,6 +49,19 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  console.log(to, from);
+  if (to.meta.auth) {
+    if (condition) {
+      
+    } else {
+      
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

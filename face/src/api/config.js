@@ -14,7 +14,7 @@ const service = axios.create({
     }, */
 })
 // 添加request拦截器 
-service.interceptors.request.use(config => {    
+service.interceptors.request.use(config => {
   // let token = localStorage.getItem('authorization');
   // if (token) {
   //     config.headers.Authorization = "Bearer " + token;
@@ -28,27 +28,20 @@ service.interceptors.request.use(config => {
 
 service.interceptors.response.use(                  
   response => {
+    console.log(response,'response');
     let res={}; 
     res.status=response.status
     res.data=response.data;
     return res.data;
   },
   error => {
-      if (error == 'Error: Request failed with status code 401') {
-        console.log('token过期')
-    }        
+    console.log(error,'error');
+    // if (error == 'Error: Request failed with status code 401') {
+    //   console.log('token过期')
+    // }        
     return Promise.reject(error)
   }
 )
-/* service.interceptors.response.use((response) => {
-    return response;
-}, function (error) {
-    if (401 === error.response.status) {
-        window.location = '/login';
-    } else {
-        return Promise.reject(error);
-    }
-}); */
 
 // service.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

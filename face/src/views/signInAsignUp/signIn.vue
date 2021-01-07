@@ -1,15 +1,15 @@
 <template>
   <div class="signInPage">
-    <div class="from_wrap">
-      <el-form hide-required-asterisk :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <div class="form_wrap">
+      <el-form hide-required-asterisk :model="form" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="邮箱：" prop="email">
-          <el-input v-model="ruleForm.email"></el-input>
+          <el-input v-model="form.email" @keyup.native.enter="submitForm('ruleForm')"></el-input>
         </el-form-item>
         <el-form-item label="密码：" prop="passwrod">
-          <el-input v-model="ruleForm.passwrod" show-password></el-input>
+          <el-input v-model="form.passwrod" show-password @keyup.native.enter="submitForm('ruleForm')"></el-input>
         </el-form-item>
         <el-form-item label="验证码：" prop="code" class="identify_form_item">
-          <el-input v-model="ruleForm.code" maxlength="4"></el-input>
+          <el-input v-model="form.code" maxlength="4" @keyup.native.enter="submitForm('ruleForm')"></el-input>
           <Identify ref="Identify" class="identify_wrap"></Identify>
         </el-form-item>
         <el-form-item>
@@ -18,7 +18,6 @@
             placement="right"
             trigger="hover">
             <span>还没有账号？请点击<router-link to="/signUp">注册</router-link></span>
-            
           </el-popover>
           <el-button class="btn" v-popover:popover @click="submitForm('ruleForm')">登录</el-button>
         </el-form-item>
@@ -35,7 +34,7 @@ export default {
   },
   data() {
     return {
-      ruleForm: {
+      form: {
         email: '',
         passwrod: '',
         code: ''
@@ -61,13 +60,45 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
+        if (valid) {
+          this.login()
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    async login() {
+      let isAccord = this.form.code.toLowerCase() === this.$refs.Identify.identifyCode
+      if (!isAccord) {
+        this.$refs.Identify.changeCode()  //刷新验证码
+        return this.$message({
+          showClose: true,
+          message: '验证码错误',
+          type: 'warning'
+        })
+      }
+      try {
+        const res = await this.$api.login(this.form)
+        if (res.code === 0) {
+          this.$message({
+            type: "success",
+            message: res.message
+          })
+          this.$store.commit('SETTOKEN','123','333')
+          console.log(this.$store.state.token);
+        } else {
+          this.$message({
+            type: "warning",
+            message: res.message
+          })
+        }
+      } catch (err) {
+        this.$message({
+          type: "warning",
+          message: err.message
+        })
+      }
     }
   },
   created() {
@@ -103,7 +134,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  .from_wrap{
+  .form_wrap{
     width: 560px;
     padding: 24px;
     // border-radius: 6px;
