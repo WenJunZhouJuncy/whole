@@ -35,8 +35,8 @@ export default {
   data() {
     return {
       form: {
-        email: '',
-        passwrod: '',
+        email: '999999@qq.com',
+        passwrod: '999999',
         code: ''
       },
       rules: {
@@ -62,9 +62,6 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.login()
-        } else {
-          console.log('error submit!!');
-          return false;
         }
       });
     },
@@ -85,8 +82,11 @@ export default {
             type: "success",
             message: res.message
           })
-          this.$store.commit('SETTOKEN','123','333')
-          console.log(this.$store.state.token);
+          res.data.token = res.token
+          this.$store.commit('user/setToken', res.data)
+          this.$router.replace({
+            path: '/'
+          })
         } else {
           this.$message({
             type: "warning",

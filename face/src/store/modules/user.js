@@ -1,9 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default {
+  namespaced: true,
   state: {
     token: localStorage.getItem('token') || '',
     user: {
@@ -11,9 +7,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    SETTOKEN(state,a,b,c) {
-      console.log(state,a,b,c);
-      state.token = a
+    setToken(state, user) {
+      localStorage.setItem('token', user.token)
+      state.token = user.token
+      state.user.username = user.username
     }
   }
-})
+}

@@ -6,7 +6,7 @@ const service = axios.create({
   timeout: 10000, // 请求超时时间      
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
-  }, 
+  },
   //axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";  
  /* withCredentials: false,
    headers:{
@@ -15,10 +15,10 @@ const service = axios.create({
 })
 // 添加request拦截器 
 service.interceptors.request.use(config => {
-  // let token = localStorage.getItem('authorization');
-  // if (token) {
-  //     config.headers.Authorization = "Bearer " + token;
-  // }
+  let token = localStorage.getItem('token');
+  if (token) {
+      config.headers.Authorization = "Bearer " + token;
+  }
   return config
 }, error => {
   Promise.reject(error)

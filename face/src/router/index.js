@@ -6,12 +6,33 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    // name: 'home',
+    // meta: {
+    //   title: '首页',
+    //   auth: true
+    // },
+    redirect: '/home',
+    // childrens: [
+    //   {
+    //     path: '/home',
+    //     name: 'home',
+    //     meta: {
+    //       title: '首页',
+    //       auth: true
+    //     },
+    //     component: () => import(/* webpackChunkName: "about" */ '@/views/index')
+    //   },
+    // ],
+    // component: () => import(/* webpackChunkName: "about" */ '@/views/home/index')
+  },
+  {
+    path: '/home',
     name: 'home',
     meta: {
       title: '首页',
       auth: true
     },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/home/index')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/index')
   },
   {
     path: '/signIn',
@@ -51,13 +72,14 @@ const router = new VueRouter({
   routes
 })
 
+import Store from '../store/index'
+
 router.beforeEach((to, from, next) => {
-  console.log(to, from);
   if (to.meta.auth) {
-    if (condition) {
-      
+    if (Store.state.user.token) {
+      next()
     } else {
-      
+      next('/signIn')
     }
   } else {
     next()
