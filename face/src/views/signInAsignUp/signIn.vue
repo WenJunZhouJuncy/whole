@@ -84,7 +84,7 @@ export default {
           })
           res.data.token = res.token
           this.$store.commit('user/setToken', res.data)
-          this.$router.replace({
+          this.$router.push({
             path: '/'
           })
         } else {
