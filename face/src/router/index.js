@@ -6,33 +6,46 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    // name: 'home',
-    // meta: {
-    //   title: '首页',
-    //   auth: true
-    // },
-    redirect: '/home',
-    // childrens: [
-    //   {
-    //     path: '/home',
-    //     name: 'home',
-    //     meta: {
-    //       title: '首页',
-    //       auth: true
-    //     },
-    //     component: () => import(/* webpackChunkName: "about" */ '@/views/index')
-    //   },
-    // ],
-    // component: () => import(/* webpackChunkName: "about" */ '@/views/home/index')
+    redirect: '/home'
   },
   {
-    path: '/home',
-    name: 'home',
+    path: '/',
     meta: {
-      title: '首页',
-      auth: true
+      auth: true,
+      menu: true
     },
-    component: () => import(/* webpackChunkName: "about" */ '@/views/index')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/index'),
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        meta: {
+          title: '主页',
+          auth: true
+        },
+        component: () => import(/* webpackChunkName: "about" */ '@/views/home/index')
+      },
+      {
+        path: '/user',
+        name: 'user',
+        meta: {
+          title: '用户管理',
+          auth: true,
+          menu: true
+        },
+        component: () => import(/* webpackChunkName: "about" */ '@/views/user/userList')
+      },
+      {
+        path: '/test',
+        name: 'test',
+        meta: {
+          title: '测试管理',
+          auth: true,
+          menu: true
+        },
+        component: () => import(/* webpackChunkName: "about" */ '@/views/test/test')
+      },
+    ]
   },
   {
     path: '/signIn',
