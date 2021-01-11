@@ -10,9 +10,10 @@ const routes = [
   },
   {
     path: '/',
+    menu: true,
     meta: {
       auth: true,
-      menu: true
+      
     },
     component: () => import(/* webpackChunkName: "about" */ '@/views/index'),
     children: [
@@ -28,22 +29,44 @@ const routes = [
       {
         path: '/user',
         name: 'user',
+        menu: true,
         meta: {
           title: '用户管理',
-          auth: true,
-          menu: true
+          auth: true
         },
-        component: () => import(/* webpackChunkName: "about" */ '@/views/user/userList')
+        children: [
+          {
+            path: '/user/list',
+            name: 'userList',
+            menu: true,
+            meta: {
+              title: '用户列表',
+              auth: true
+            },
+            component: () => import(/* webpackChunkName: "about" */ '@/views/user/userList'),
+          }
+        ]
       },
       {
         path: '/test',
         name: 'test',
+        menu: true,
         meta: {
           title: '测试管理',
-          auth: true,
-          menu: true
+          auth: true
         },
-        component: () => import(/* webpackChunkName: "about" */ '@/views/test/test')
+        children: [
+          {
+            path: '/test/list',
+            name: 'testList',
+            menu: true,
+            meta: {
+              title: '测试列表',
+              auth: true
+            },
+            component: () => import(/* webpackChunkName: "about" */ '@/views/test/test'),
+          }
+        ]
       },
     ]
   },

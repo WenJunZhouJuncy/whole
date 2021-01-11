@@ -41,10 +41,16 @@
 //   }
 // }
 .el-aside{
-  background: linear-gradient(#e66465, #fdff9f, #ffffff);
+  background: linear-gradient(#e66465, #fdff9f, #ffffff, #cae8ff);
   .el-menu{
     background: transparent;
     border: none;
+    .el-menu-item.is-active{
+      background-color: #ff4343ab;
+    }
+    .el-submenu__title:hover, .el-menu-item:hover{
+      background-color: #ff505070;
+    }
   }
 }
 .el-scrollbar__wrap {
@@ -58,5 +64,5 @@
   align-items: center;
 }
 i{
-  color: #d52ce2 !important;
+  color: #ee3f3f !important;
 }
