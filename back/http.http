@@ -26,3 +26,20 @@ content-type: application/json
   "rold": 0,
   "status": 0
 }
+
+###获取用户
+POST {{url}}/admin/getUser
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmY3YjY1MTI3ZWZhMTA2YWMxM2E2OGMiLCJpYXQiOjE2MTAwNzQ1NzF9.a-IAGsIia6mqRRoA2tet3nTzpMNE3Gb4Voh-kAZgodU
+
+{}
+
+###修改用户状态
+POST {{url}}/admin/setUserStatus
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmY3YjY1MTI3ZWZhMTA2YWMxM2E2OGMiLCJpYXQiOjE2MTAwNzQ1NzF9.a-IAGsIia6mqRRoA2tet3nTzpMNE3Gb4Voh-kAZgodU
+
+{
+  "id": "5ff58866e6c5f945a033741d",
+  "status": 0
+}

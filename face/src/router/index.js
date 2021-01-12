@@ -34,6 +34,7 @@ const routes = [
           title: '用户管理',
           auth: true
         },
+        component: () => import(/* webpackChunkName: "about" */ '@/views/user/index'),
         children: [
           {
             path: '/user/list',
@@ -55,6 +56,7 @@ const routes = [
           title: '测试管理',
           auth: true
         },
+        component: () => import(/* webpackChunkName: "about" */ '@/views/test/index'),
         children: [
           {
             path: '/test/list',

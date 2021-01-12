@@ -14,7 +14,7 @@
         >
         <el-submenu :index="item.path" v-for="(item, index) in menu" :key="index">
           <template slot="title">
-            <i class="el-icon-location"></i>
+            <i class="el-icon-location theme"></i>
             <span slot="title">{{item.meta.title}}</span>
           </template>
           <template v-for="it in item.children">
@@ -23,17 +23,12 @@
         </el-submenu>
       </el-menu>
     </el-scrollbar>
-      
-    </el-aside>
-  
-  
-  
+  </el-aside>
   <el-container>
     <el-header>
-      <i :class="[close ? 'el-icon-s-unfold' : 'el-icon-s-fold', 'header_icon']" @click="close = !close"></i>
-      <span>王小虎</span>
+      <i :class="[close ? 'el-icon-s-unfold' : 'el-icon-s-fold', 'header_icon theme']" @click="close = !close"></i>
+      <span>{{username}} {{test}}</span>
     </el-header>
-    
     <el-main>
       <router-view></router-view>
     </el-main>
@@ -42,6 +37,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   components: {},
   data() {
@@ -50,14 +46,22 @@ export default {
       menuList: []
     };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      test: state => state.user.test,
+      username: state => state.user.user.username
+    })
+    // username() {
+    //   console.log(this.$store.state.user.user);
+    //   return this.$store.state.user.user.username
+    // }
+  },
   watch: {},
   methods: {
     
   },
   created() {
     this.menu = this.$router.options.routes.filter(e => e.menu)[0].children.filter(e => e.menu)
-    console.log(this.menu);
   },
   mounted() {
     
@@ -66,7 +70,6 @@ export default {
 </script>
 <style lang='less'>
 //@import url(); 引入公共css类
-
 .img_wrap{
   display: flex;
   justify-content: center;
@@ -77,6 +80,9 @@ export default {
 .header_icon{
   font-size: 24px;
   cursor: pointer;
+}
+.el-submenu__icon-arrow{
+  color: #ee3f3f !important;
 }
 .aside_listen{
   transition: all 0.5s;

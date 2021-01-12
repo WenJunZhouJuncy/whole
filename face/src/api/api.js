@@ -28,6 +28,22 @@ export const login = (data = {}) => {
 	})
 }
 
+export const getUser = (data = {}) => {
+	return axios({
+		url: common.baseURL + '/admin/getUser',
+		method: 'post',
+		data,
+	})
+}
+
+export const setUserStatus = (data = {}) => {
+	return axios({
+		url: common.baseURL + '/admin/setUserStatus',
+		method: 'post',
+		data,
+	})
+}
+
 //我的问诊列表/ehealth.portalapi/api/DrugStore/GetSouthVisitList
 // export function getSouthVisitList(parameter) {
 // 	let parameters = {};
