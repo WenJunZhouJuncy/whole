@@ -32,7 +32,10 @@ POST {{url}}/admin/getUser
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmY3YjY1MTI3ZWZhMTA2YWMxM2E2OGMiLCJpYXQiOjE2MTAwNzQ1NzF9.a-IAGsIia6mqRRoA2tet3nTzpMNE3Gb4Voh-kAZgodU
 
-{}
+{
+  "page": 2,
+  "size": 10
+}
 
 ###修改用户状态
 POST {{url}}/admin/setUserStatus

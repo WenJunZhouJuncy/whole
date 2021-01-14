@@ -35,43 +35,26 @@ module.exports = async (req, res) => {
       message: '服务器崩溃啦┭┮﹏┭┮请稍后重试~'
     })
   }
-
-
-
-  // userModel.findOne({ email: req.body.email }, (err, doc) => {
-  //   if (err) {
-  //     return res.send({
-  //       code: -1,
-  //       data: err,
-  //       message: '服务器崩溃啦┭┮﹏┭┮请稍后重试~'
-  //     })
-  //   }
-  //   if (!doc) {
-  //     return res.send({
-  //       code: 1,
-  //       data: err,
-  //       message: '邮箱或密码错误'
-  //     })
-  //   }
-  //   let isAuth = require('bcrypt').compareSync(req.body.passwrod, doc.passwrod)
-  //   console.log(isAuth);
-  //   if (isAuth) {
-  //     const token = jwt.sign({
-  //       userId: doc._id,
-  //     }, SECRET);
-  //     // const tok = jwt.verify(token, SECRET)
-  //     res.send({
-  //       code: 0,
-  //       data: doc,
-  //       message: '登录成功',
-  //       token,
-  //     })
-  //   } else {
-  //     res.send({
-  //       code: 1,
-  //       data: err,
-  //       message: '邮箱或密码错误'
-  //     })
-  //   }
-  // })
 }
+
+// const Joi = require('joi')
+
+// const JoiSchema = {
+//   username: Joi.string().min(2).max(10).required().error(new Error('用户名不符')),
+//   passwrod: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required().error(new Error('密码不符')),
+//   email: Joi.string().email().required().error(new Error('邮箱不符')),
+//   role: Joi.number().valid(0, 1).required().error(new Error('角色不符')),  // 只能传0或1
+// }
+// await Joi.validate(req.body, JoiSchema)
+/*
+try {
+  await Joi.validate({
+    username: '651313',
+    passwrod: 'daw65d4a31a13',
+    email: '980497826@qq.com',
+    role: 2 
+  }, JoiSchema)
+} catch (err) {
+  err.message  =>  角色不符  
+}*/
+ 
